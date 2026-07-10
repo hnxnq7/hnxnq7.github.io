@@ -1,0 +1,44 @@
+.music-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 1rem 0;
+}
+
+.cd-button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  border: 0.5px solid var(--color-border);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cd-button:hover {
+  border-color: var(--star);
+}
+
+.cd-button svg {
+  transition: transform 0.2s;
+}
+
+.cd-button.spinning svg {
+  animation: cd-spin 3s linear infinite;
+}
+
+@keyframes cd-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.music-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--star);
+}

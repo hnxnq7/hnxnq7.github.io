@@ -1,0 +1,16 @@
+.north-star {
+  align-items: center;
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.north-star .emoji {
+  font-size: 56px;
+  margin-bottom: 1.5rem;
+}
+
+.north-star p {
+  max-width: 560px;
+  font-size: 19px;
+  line-height: 1.8;
+}

@@ -1,0 +1,48 @@
+.shell {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.nav-link {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-heading);
+  font-weight: 500;
+}
+
+.theme-toggle {
+  margin-left: auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 0.5px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-heading);
+  color: var(--color-heading);
+}
+
+.content {
+  min-height: 60vh;
+}

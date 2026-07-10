@@ -1,0 +1,26 @@
+.constellation {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.constellation-leo {
+  top: 160px;
+  left: 130px;
+}
+
+.constellation-cassiopeia {
+  top: 480px;
+  left: 150px;
+}
+
+.constellation-cancer {
+  top: 280px;
+  right: 120px;
+}
+
+@media (max-width: 1300px) {
+  .constellation {
+    display: none;
+  }
+}
