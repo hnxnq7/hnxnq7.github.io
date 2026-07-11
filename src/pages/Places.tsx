@@ -40,12 +40,12 @@ const places: Place[] = [
 // through the same function as the dots above — an abstraction of where each
 // continent is, not a coastline, but honestly aligned with the real dots
 const landmasses = [
-  { name: 'na', latRange: [24, 70] as const, lonRange: [-130, -60] as const },
-  { name: 'sa', latRange: [-55, 12] as const, lonRange: [-82, -35] as const },
-  { name: 'eu', latRange: [36, 60] as const, lonRange: [-10, 30] as const },
-  { name: 'af', latRange: [-35, 37] as const, lonRange: [-18, 52] as const },
-  { name: 'as', latRange: [5, 55] as const, lonRange: [45, 145] as const },
-  { name: 'au', latRange: [-44, -10] as const, lonRange: [112, 154] as const },
+  { name: 'na', label: 'North America', latRange: [24, 70] as const, lonRange: [-130, -60] as const },
+  { name: 'sa', label: 'South America', latRange: [-55, 12] as const, lonRange: [-82, -35] as const },
+  { name: 'eu', label: 'Europe', latRange: [36, 60] as const, lonRange: [-10, 30] as const },
+  { name: 'af', label: 'Africa', latRange: [-35, 37] as const, lonRange: [-18, 52] as const },
+  { name: 'as', label: 'Asia', latRange: [5, 55] as const, lonRange: [45, 145] as const },
+  { name: 'au', label: 'Australia', latRange: [-44, -10] as const, lonRange: [112, 154] as const },
 ]
 
 function Places() {
@@ -67,15 +67,21 @@ function Places() {
             {landmasses.map((m) => {
               const topLeft = project(m.latRange[1], m.lonRange[0])
               const bottomRight = project(m.latRange[0], m.lonRange[1])
+              const cx = (topLeft.x + bottomRight.x) / 2
+              const cy = (topLeft.y + bottomRight.y) / 2
               return (
-                <rect
-                  key={m.name}
-                  x={topLeft.x}
-                  y={topLeft.y}
-                  width={bottomRight.x - topLeft.x}
-                  height={bottomRight.y - topLeft.y}
-                  rx="10"
-                />
+                <g key={m.name}>
+                  <rect
+                    x={topLeft.x}
+                    y={topLeft.y}
+                    width={bottomRight.x - topLeft.x}
+                    height={bottomRight.y - topLeft.y}
+                    rx="10"
+                  />
+                  <text className="continent-label" x={cx} y={cy} textAnchor="middle">
+                    {m.label}
+                  </text>
+                </g>
               )
             })}
           </g>

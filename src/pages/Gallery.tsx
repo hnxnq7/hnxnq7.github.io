@@ -59,6 +59,7 @@ function Gallery({ photos }: { photos: Photo[] }) {
             className="gallery-item"
             style={style}
             onClick={() => bringToFront(i)}
+            onMouseEnter={() => bringToFront(i)}
           >
             {photo.src ? (
               <img src={photo.src} alt={photo.alt} />
