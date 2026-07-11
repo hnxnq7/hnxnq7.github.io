@@ -1,0 +1,41 @@
+.world-map {
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.world-map svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.continents rect {
+  fill: var(--color-border);
+  opacity: 0.6;
+  filter: blur(3px);
+}
+
+.place-dot circle {
+  fill: var(--star);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.15s, filter 0.15s;
+}
+
+.place-dot:hover circle {
+  transform: scale(1.6);
+  filter: drop-shadow(0 0 4px var(--star));
+}
+
+.place-dot text {
+  font-family: var(--font-mono);
+  font-size: 3.5px;
+  fill: var(--color-heading);
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+
+.place-dot:hover text {
+  opacity: 1;
+}

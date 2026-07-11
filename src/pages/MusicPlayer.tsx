@@ -39,8 +39,18 @@ type SpotifyEmbedController = {
 let sharedController: SpotifyEmbedController | null = null
 let pendingSong: Song | null = null
 let onPlayingChange: ((playing: boolean) => void) | null = null
+let onLoadingChange: ((loading: boolean) => void) | null = null
+let loadRequestId = 0
 
 function playSong(song: Song) {
+  const requestId = ++loadRequestId
+  onLoadingChange?.(true)
+  // Spotify's embed doesn't always report back (e.g. autoplay blocked by the
+  // browser), so stop showing "loading" after a few seconds regardless —
+  // guarded by requestId so a stale timeout can't clear a newer shuffle
+  setTimeout(() => {
+    if (requestId === loadRequestId) onLoadingChange?.(false)
+  }, 6000)
   if (sharedController) {
     sharedController.loadUri(song.uri)
     sharedController.play()
@@ -52,9 +62,11 @@ function playSong(song: Song) {
 function MusicPlayer() {
   const [current, setCurrent] = useState<Song | null>(null)
   const [playing, setPlaying] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     onPlayingChange = setPlaying
+    onLoadingChange = setLoading
 
     let mount = document.getElementById('spotify-mount-point')
     if (!mount) {
@@ -93,6 +105,7 @@ function MusicPlayer() {
           sharedController = controller
           controller.addListener('playback_update', (e) => {
             onPlayingChange?.(!e?.data?.isPaused)
+            onLoadingChange?.(false)
           })
           if (pendingSong) {
             controller.loadUri(pendingSong.uri)
@@ -101,6 +114,12 @@ function MusicPlayer() {
           }
         }
       )
+    }
+
+    // pause on navigating away — otherwise there's no way to stop playback
+    // once you leave the page, since the CD button only shuffles/plays
+    return () => {
+      sharedController?.pause()
     }
   }, [])
 
@@ -125,10 +144,14 @@ function MusicPlayer() {
         </svg>
       </button>
 
-      {current && (
-        <div className="music-label">
-          {current.title} · {current.artist}
-        </div>
+      {loading ? (
+        <div className="music-label loading">spinning up …</div>
+      ) : (
+        current && (
+          <div className="music-label">
+            {current.title} · {current.artist}
+          </div>
+        )
       )}
     </div>
   )

@@ -6,6 +6,7 @@ import NorthStar from './pages/NorthStar'
 import Built from './pages/Built'
 import Journey from './pages/Journey'
 import Placeholder from './pages/Placeholder'
+import Places from './pages/Places'
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
             <Route path="luna" element={<Placeholder title="luna" />} />
             <Route path="leo" element={<Placeholder title="leo" />} />
             <Route path="singing" element={<Placeholder title="singing" />} />
-            <Route path="places" element={<Placeholder title="places I've been" />} />
+            <Route path="places" element={<Places />} />
           </Route>
         </Routes>
       </BrowserRouter>

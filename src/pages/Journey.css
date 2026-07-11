@@ -106,6 +106,22 @@
   animation: tl-item-fade-in 0.4s ease;
 }
 
+@keyframes tl-item-fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.tl-item.leaving {
+  animation: tl-item-fade-out 0.4s ease forwards;
+  pointer-events: none;
+}
+
 .tl-item .dot {
   position: absolute;
   top: 0;

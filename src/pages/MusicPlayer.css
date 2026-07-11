@@ -42,3 +42,16 @@
   font-size: 11px;
   color: var(--star);
 }
+
+@keyframes music-label-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.music-label.loading {
+  animation: music-label-pulse 1.2s ease-in-out infinite;
+}

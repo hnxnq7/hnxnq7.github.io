@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useTheme } from '../theme'
 import Gallery from './Gallery'
 import MusicPlayer from './MusicPlayer'
@@ -17,10 +17,34 @@ const photos = [
   { src: '/gallery/IMG_6528.jpeg', alt: 'up the wall' },
   { src: '/gallery/IMG_3624.JPG', alt: 'graduation day' },
   { src: '/gallery/IMG_0167.JPG', alt: 'a rainbow of keychains' },
+  { src: '/gallery/IMG_1435.jpeg', alt: 'halloween with the girls' },
+  { src: '/gallery/IMG_2667.JPG', alt: 'a hug in lobby 7' },
+  { src: '/gallery/IMG_2706.JPG', alt: 'bathroom mirror chaos' },
+  { src: '/gallery/IMG_3134.JPG', alt: 'a night in animal crossing' },
+  { src: '/gallery/IMG_3223.jpeg', alt: 'stargazing on a rooftop' },
+  { src: '/gallery/IMG_4280.jpeg', alt: 'horseback riding' },
+  { src: '/gallery/IMG_4390.jpeg', alt: 'peace sign at the edge of the world' },
+  { src: '/gallery/IMG_5849.JPG', alt: 'building a snowman' },
+  { src: '/gallery/IMG_6475.JPG', alt: 'golden hour with friends' },
+  { src: '/gallery/IMG_6476.JPG', alt: 'a walk through the snow' },
+  { src: '/gallery/IMG_8338.jpeg', alt: 'meeting a sea turtle' },
+  { src: '/gallery/IMG_9683.jpeg', alt: 'collapsed in the snow after a ski' },
+  { src: '/gallery/IMG_9725.JPG', alt: 'recital day with mom' },
 ]
+
+function shuffle<T>(arr: T[]): T[] {
+  const next = [...arr]
+  for (let i = next.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[next[i], next[j]] = [next[j], next[i]]
+  }
+  return next
+}
 
 function NorthStar() {
   const { setTheme } = useTheme()
+  // re-shuffled on every mount, so reopening the page gives a new photo order
+  const shuffledPhotos = useMemo(() => shuffle(photos), [])
 
   useEffect(() => {
     setTheme('night')
@@ -42,7 +66,7 @@ function NorthStar() {
 
       <MusicPlayer />
 
-      <Gallery photos={photos} />
+      <Gallery photos={shuffledPhotos} />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTheme } from '../theme'
 import Constellations from './Constellations'
 import './Page.css'
@@ -6,8 +6,11 @@ import './Journey.css'
 
 type Category = 'experiences' | 'education' | 'travelling' | 'volunteering' | 'life' | 'quests'
 
-const FILTERS: Category[] = ['experiences', 'education', 'travelling', 'volunteering', 'life']
-const DEFAULT_OFF: Category[] = ['travelling', 'life']
+// 'life' has no filter button — it's always shown, not toggleable
+const FILTERS: Category[] = ['experiences', 'education', 'travelling', 'volunteering']
+const DEFAULT_OFF: Category[] = ['travelling']
+const ALWAYS_ON: Category[] = ['life']
+const FADE_OUT_MS = 400
 
 type Entry = {
   id: string
@@ -178,6 +181,14 @@ const entries: Entry[] = [
     org: 'Maui, Hawaii',
     start: '2025-12',
     end: '2025-12',
+    category: 'travelling',
+  },
+  {
+    id: 'trip-white-mountains',
+    title: 'Backpacking trip',
+    org: 'White Mountains, New Hampshire',
+    start: '2025-11',
+    end: '2025-11',
     category: 'travelling',
   },
   {
@@ -398,11 +409,41 @@ function Journey() {
     })
   }
 
+  // a category toggled off keeps rendering (with a fade-out class) for
+  // FADE_OUT_MS before actually leaving `visible` — otherwise entries would
+  // just vanish instantly with no way to animate their disappearance
+  const [justHidden, setJustHidden] = useState<Set<Category>>(new Set())
+  const prevActiveRef = useRef(active)
+  useEffect(() => {
+    const prevActive = prevActiveRef.current
+    const newlyHidden = FILTERS.filter((c) => prevActive.has(c) && !active.has(c))
+    if (newlyHidden.length > 0) {
+      setJustHidden((prev) => {
+        const next = new Set(prev)
+        newlyHidden.forEach((c) => next.add(c))
+        return next
+      })
+    }
+    const timers = newlyHidden.map((c) =>
+      setTimeout(() => {
+        setJustHidden((prev) => {
+          const next = new Set(prev)
+          next.delete(c)
+          return next
+        })
+      }, FADE_OUT_MS)
+    )
+    prevActiveRef.current = active
+    return () => timers.forEach(clearTimeout)
+  }, [active])
+
   // scale is recomputed from only the visible entries: toggling on a category
   // that reaches further back in time extends the timeline further down, but
   // never changes the spacing of entries already on it (fixed px-per-month)
   const { visible, bornTop, containerHeight, sideById, labelTopById } = useMemo(() => {
-    const visible = entries.filter((e) => active.has(e.category))
+    const visible = entries.filter(
+      (e) => active.has(e.category) || justHidden.has(e.category) || ALWAYS_ON.includes(e.category)
+    )
     const starts = visible.length > 0 ? visible.map((e) => monthIndexFromStr(e.start)) : [bornIdx]
     const baseIdx = Math.min(...starts)
 
@@ -464,7 +505,7 @@ function Journey() {
     })
 
     return { visible: positioned, bornTop, containerHeight, sideById, labelTopById }
-  }, [active])
+  }, [active, justHidden])
 
   return (
     <div className="page journey-page">
@@ -536,8 +577,13 @@ function Journey() {
               {entry.location && <div className="entry-location">{entry.location}</div>}
             </>
           )
+          const isLeaving = !active.has(entry.category) && !ALWAYS_ON.includes(entry.category)
           return (
-            <div className={`tl-item ${onRight ? 'right' : 'left'}`} style={{ top: topStart }} key={entry.id}>
+            <div
+              className={`tl-item ${onRight ? 'right' : 'left'}${isLeaving ? ' leaving' : ''}`}
+              style={{ top: topStart }}
+              key={entry.id}
+            >
               <div className="segment" style={{ top: segTop, height: segHeight }} />
               <div className="dot" />
               {labelOffset > 4 && <div className="leader" style={{ height: labelOffset }} />}
