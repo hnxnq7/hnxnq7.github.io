@@ -18,7 +18,7 @@ const places: Place[] = [
   { label: 'Reno, Nevada', lat: 39.53, lon: -119.81 },
   { label: 'Salt Lake City', lat: 40.76, lon: -111.89 },
   { label: 'Yellowstone', lat: 44.6, lon: -110.55 },
-  { label: 'Bloomington, Indiana', lat: 39.17, lon: -86.53 },
+  { label: 'Terre Haute, Indiana', lat: 39.47, lon: -87.41 },
   { label: 'Oahu, Hawaii', lat: 21.31, lon: -157.86 },
   { label: 'Maui, Hawaii', lat: 20.8, lon: -156.33 },
   { label: 'Vancouver, Canada', lat: 49.28, lon: -123.12 },

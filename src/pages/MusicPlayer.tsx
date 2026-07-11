@@ -129,13 +129,23 @@ function MusicPlayer() {
     playSong(next)
   }
 
+  // spinning disc doubles as a pause button — click it while playing to
+  // pause, click it while stopped to shuffle to something new
+  const handleClick = () => {
+    if (playing) {
+      sharedController?.pause()
+    } else {
+      shuffle()
+    }
+  }
+
   return (
     <div className="music-player">
       <button
         type="button"
         className={`cd-button ${playing ? 'spinning' : ''}`}
-        onClick={shuffle}
-        aria-label="shuffle and play a favorite song"
+        onClick={handleClick}
+        aria-label={playing ? 'pause' : 'shuffle and play a favorite song'}
       >
         <svg viewBox="0 0 32 32" width="28" height="28">
           <circle cx="16" cy="16" r="14" fill="none" stroke="var(--star)" strokeWidth="1" />

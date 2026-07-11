@@ -55,18 +55,18 @@ function NorthStar() {
       <div className="emoji">🌌</div>
       <p>
         My goal: experience as many interesting things with as many cool
-        and fun people as I can.
-        <br />
-        <br />
-        That means to me learning about the world constantly and pushing
-        the boundary, being helpful and kind to the people around me, and
-        noticing and appreciating beauty in whatever form it shows up in
-        :D
+        and fun people as I can :D
       </p>
 
       <MusicPlayer />
 
       <Gallery photos={shuffledPhotos} />
+
+      <p className="north-star-footer">
+        That means to me learning about the world constantly and pushing
+        the boundary, being helpful and kind to the people around me, and
+        noticing and appreciating beauty in whatever form it shows up in!
+      </p>
     </div>
   )
 }

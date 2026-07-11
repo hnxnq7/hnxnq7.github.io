@@ -96,7 +96,17 @@ function About() {
       </section>
 
       <section className="contact-section">
-        <p className="contact">lirachel at mit dot edu</p>
+        <p className="contact">
+          <a href="https://www.linkedin.com/in/rachel-li-063262248/" target="_blank" rel="noreferrer">
+            linkedin
+          </a>
+          {' · '}
+          <a href="https://github.com/hnxnq7" target="_blank" rel="noreferrer">
+            github
+          </a>
+          {' · '}
+          lirachel at mit dot edu
+        </p>
       </section>
     </div>
   )
