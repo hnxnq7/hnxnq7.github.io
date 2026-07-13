@@ -89,10 +89,6 @@ function MusicPlayer() {
       document.body.appendChild(script)
     }
 
-    const next = songs[Math.floor(Math.random() * songs.length)]
-    setCurrent(next)
-    playSong(next)
-
     if (sharedController) return
 
     window.onSpotifyIframeApiReady = (IFrameAPI) => {

@@ -4,11 +4,11 @@ import Constellations from './Constellations'
 import './Page.css'
 import './Journey.css'
 
-type Category = 'experiences' | 'education' | 'travelling' | 'volunteering' | 'life' | 'quests'
+type Category = 'experiences' | 'education' | 'traveling' | 'volunteering' | 'life' | 'quests'
 
 // 'life' has no filter button — it's always shown, not toggleable
-const FILTERS: Category[] = ['experiences', 'education', 'travelling', 'volunteering']
-const DEFAULT_OFF: Category[] = ['travelling']
+const FILTERS: Category[] = ['experiences', 'education', 'traveling', 'volunteering']
+const DEFAULT_OFF: Category[] = ['traveling']
 const ALWAYS_ON: Category[] = ['life']
 const FADE_OUT_MS = 400
 
@@ -90,7 +90,7 @@ const entries: Entry[] = [
     end: '2024-07',
     durationLabel: '2 mos',
     blurb: 'Studied number theory, focusing on rigorous proofs from axioms to quadratic reciprocity and its applications. Attended advanced lectures in functional analysis, translation surface, and machine learning. Co authored a proof based paper on the FTA.',
-    category: 'education',
+    category: 'experiences',
   },
   {
     id: 'alphastar',
@@ -165,7 +165,7 @@ const entries: Entry[] = [
     org: 'Los Angeles',
     start: '2026-07',
     end: '2026-07',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-lee',
@@ -173,7 +173,7 @@ const entries: Entry[] = [
     org: 'Lee, Massachusetts',
     start: '2026-02',
     end: '2026-03',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-maui',
@@ -181,7 +181,7 @@ const entries: Entry[] = [
     org: 'Maui, Hawaii',
     start: '2025-12',
     end: '2025-12',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-white-mountains',
@@ -189,7 +189,7 @@ const entries: Entry[] = [
     org: 'White Mountains, New Hampshire',
     start: '2025-11',
     end: '2025-11',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-tokyo',
@@ -198,7 +198,7 @@ const entries: Entry[] = [
     location: 'Japan',
     start: '2025-07',
     end: '2025-07',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-china',
@@ -207,7 +207,7 @@ const entries: Entry[] = [
     location: 'China',
     start: '2025-06',
     end: '2025-06',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-uk',
@@ -216,7 +216,7 @@ const entries: Entry[] = [
     location: 'UK',
     start: '2025-03',
     end: '2025-03',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-vancouver',
@@ -225,7 +225,7 @@ const entries: Entry[] = [
     location: 'Canada',
     start: '2024-12',
     end: '2024-12',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-oahu',
@@ -233,7 +233,7 @@ const entries: Entry[] = [
     org: 'Oahu, Hawaii',
     start: '2022-11',
     end: '2022-11',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-east-coast',
@@ -241,7 +241,7 @@ const entries: Entry[] = [
     org: 'East Coast',
     start: '2022-07',
     end: '2022-07',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-la-2021',
@@ -249,7 +249,7 @@ const entries: Entry[] = [
     org: 'Los Angeles',
     start: '2021-12',
     end: '2021-12',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-tahoe',
@@ -257,7 +257,7 @@ const entries: Entry[] = [
     org: 'Lake Tahoe',
     start: '2021-11',
     end: '2021-11',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-yellowstone',
@@ -265,7 +265,7 @@ const entries: Entry[] = [
     org: 'Yellowstone',
     start: '2019-07',
     end: '2019-07',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-salt-lake-city',
@@ -273,7 +273,7 @@ const entries: Entry[] = [
     org: 'Salt Lake City',
     start: '2018-12',
     end: '2018-12',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-socal-roadtrip',
@@ -281,7 +281,7 @@ const entries: Entry[] = [
     org: 'SoCal Road Trip',
     start: '2018-11',
     end: '2018-11',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-la-sd-bayarea',
@@ -289,7 +289,7 @@ const entries: Entry[] = [
     org: 'Los Angeles, San Diego & Bay Area',
     start: '2015-07',
     end: '2015-08',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-philippines',
@@ -297,7 +297,7 @@ const entries: Entry[] = [
     org: 'Philippines',
     start: '2015-02',
     end: '2015-02',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-harbin-paektu',
@@ -306,7 +306,7 @@ const entries: Entry[] = [
     location: 'China',
     start: '2015-01',
     end: '2015-01',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-jeju',
@@ -315,7 +315,7 @@ const entries: Entry[] = [
     location: 'Korea',
     start: '2014-08',
     end: '2014-08',
-    category: 'travelling',
+    category: 'traveling',
   },
   {
     id: 'trip-tokyo-2014',
@@ -324,7 +324,7 @@ const entries: Entry[] = [
     location: 'Japan',
     start: '2014-07',
     end: '2014-07',
-    category: 'travelling',
+    category: 'traveling',
   },
 ]
 
@@ -549,7 +549,7 @@ function Journey() {
           const content = (
             <>
               <div className="date">{formatRange(entry)}</div>
-              <div className={entry.category === 'travelling' ? 'entry-title trip-title' : 'entry-title'}>
+              <div className={entry.category === 'traveling' ? 'entry-title trip-title' : 'entry-title'}>
                 {entry.url ? (
                   <a href={entry.url} target="_blank" rel="noreferrer">
                     {entry.org}

@@ -6,7 +6,7 @@ const important = [
   { label: 'luna', to: '/luna' },
   { label: 'leo', to: '/leo' },
   { label: 'singing', to: '/singing' },
-  { label: 'travelling', to: '/places' },
+  { label: 'traveling', to: '/places' },
   { label: '🌌', to: '/north-star', hidden: true },
 ]
 
